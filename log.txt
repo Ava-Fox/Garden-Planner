@@ -1,0 +1,6 @@
+FIXED: Figure out how to connect stylesheet to index.html
+      Guess: not properly finding file path because it's looking directly
+      in the "templates" folder
+
+    Actually wasn't updating bc auto-reload wasn't configured in app.py
+
