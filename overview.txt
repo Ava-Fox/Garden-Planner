@@ -1,0 +1,13 @@
+---- GARDEN PLANNER ----
+
+Overview:
+
+A tool that will help plan a garden by sorting taller plants to the North, avoiding placing "bad buddies" next to one another,
+logging the current and past placement of plants for improved suggestions, and possibly sending out weather notifications 
+warning of frost or extream heat. Other ideas include gathering data from local resources pertaining to the care of the 
+specific plant searched as well as  having a 'wishlist' function where the user can input all the plants they would like to 
+grow and be given back information about if they can grow them in their area, when they should plant seeds/transplants, 
+and even be notified when it comes time to sew seeds. Another function could be a "bloom-cycle" planner, where instead of planning by 
+planting time, you can plan by bloom time in order to coordinate the garden aesthetically, and be given a retroactive
+planting guide for your specific repertoire.
+

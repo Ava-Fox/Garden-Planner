@@ -4,3 +4,4 @@ FIXED: Figure out how to connect stylesheet to index.html
 
     Actually wasn't updating bc auto-reload wasn't configured in app.py
 
+TODO: Plan Spring garden and make note of process

@@ -9,4 +9,5 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 
 @app.route("/")
 def index():
+    # Should I make them log in? 
     return render_template("index.html")
