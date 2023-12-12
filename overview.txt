@@ -11,3 +11,15 @@ and even be notified when it comes time to sew seeds. Another function could be 
 planting time, you can plan by bloom time in order to coordinate the garden aesthetically, and be given a retroactive
 planting guide for your specific repertoire.
 
+
+Index / My-Garden page:
+    Maybe overview of current plants in garden? 
+    Note section?
+        Add note to database for next year?
+
+History Page:
+    Show everything grew in past, along with some notes?
+
+Planning page:
+    Where can plan future garden
+    Be notified of plants in desired wishlist for upcoming season

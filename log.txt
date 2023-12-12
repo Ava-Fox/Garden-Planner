@@ -5,3 +5,19 @@ FIXED: Figure out how to connect stylesheet to index.html
     Actually wasn't updating bc auto-reload wasn't configured in app.py
 
 TODO: Plan Spring garden and make note of process
+
+TODO: Create database w/ Angela's data
+  Organization:
+    By plant name and planting window? 
+    By planting window w/ plants?
+
+    Table of months w/ list of everything can plant and can join w/ more info on plant table? 
+    Table of what's currently planted
+    History table w/ dates and notes 
+
+    Start w/ small sample data bf creating whole database? 
+      Tomatoes, carrots, onions etc? 
+   
+   Figure out how to scrub data from other sites.... 
+
+TODO: Create login and register page
