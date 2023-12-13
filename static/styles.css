@@ -6,6 +6,11 @@ body {
 .error {
     color: rgb(195, 70, 70);
 }
+
+nav .navbar-brand {
+    font-size: x-large;
+}
+
 main {
     text-align: center;
 }

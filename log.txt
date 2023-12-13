@@ -20,4 +20,6 @@ TODO: Create database w/ Angela's data
    
    Figure out how to scrub data from other sites.... 
 
-TODO: Create login and register page
+DONE: Create login and register page
+
+TODO: Navbar in css
