@@ -15,11 +15,15 @@ TODO: Create database w/ Angela's data
     Table of what's currently planted
     History table w/ dates and notes 
 
+    - users have garden_id linked to garden table
+
     Start w/ small sample data bf creating whole database? 
       Tomatoes, carrots, onions etc? 
    
    Figure out how to scrub data from other sites.... 
 
+  
+
 DONE: Create login and register page
 
-TODO: Navbar in css
+DONE: Navbar in css

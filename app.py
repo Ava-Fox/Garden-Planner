@@ -17,10 +17,22 @@ Session(app)
 
 db = SQL("sqlite:///garden.db")
 
+
+@app.route("/history")
+@login_required
+def history():
+    return render_template("history.html")
+
+
 @app.route("/", methods=["GET", "POST"])
 @login_required
 def index():
     return render_template("index.html")
+
+@app.route("/plan", methods=["GET", "POST"])
+@login_required
+def plan():
+    return render_template("plan.html")
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -95,4 +107,3 @@ def register():
     else:
         return render_template("register.html")
     
-
