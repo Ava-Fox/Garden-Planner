@@ -1,19 +1,27 @@
 import os
 
 from cs50 import SQL
-from flask import Flask, render_template
+from datetime import date
+from flask import Flask, flash, redirect, render_template, request, session
 from flask_session import Session
+from werkzeug.security import check_password_hash, generate_password_hash
 
-from helpers import lookup
+from helpers import login_required
 
 app = Flask(__name__)
 
 app.config["TEMPLATES_AUTO_RELOAD"] = True
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
+
+db = SQL("sqlite:///garden.db")
 
 @app.route("/", methods=["GET", "POST"])
+@login_required
 def index():
-    # Should I make them log in? 
     return render_template("index.html")
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -27,18 +35,18 @@ def login():
 
         # Ensure username was submitted
         if not request.form.get("username"):
-            return apology("must provide username", 403)
+            return render_template("login.html", message="*Please provide username")
 
         # Ensure password was submitted
         elif not request.form.get("password"):
-            return apology("must provide password", 403)
+            return render_template("login.html", message="*Please provide password")
 
         # Query database for username
         rows = db.execute("SELECT * FROM users WHERE username = ?", request.form.get("username"))
 
         # Ensure username exists and password is correct
         if len(rows) != 1 or not check_password_hash(rows[0]["hash"], request.form.get("password")):
-            return apology("invalid username and/or password", 403)
+            return render_template("login.html", message="*Invalid username/password")
 
         # Remember which user has logged in
         session["user_id"] = rows[0]["id"]
