@@ -2,6 +2,10 @@ body {
     background-color: #ffe4c4;
     font-family:'American Typewriter';
 }
+
+.error {
+    color: rgb(195, 70, 70);
+}
 main {
     text-align: center;
 }
