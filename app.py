@@ -21,7 +21,14 @@ db = SQL("sqlite:///garden.db")
 @login_required
 def add():
     if request.method == "POST":
-        ...
+        user_id = session["user_id"]
+        plants = request.form.get("plant")
+        plants = plants.split()
+
+        # Check to see if user response matches with plants logged in database
+        # If so, add them to their garden table
+
+        return render_template("add.html", plants=plants)
     
     else:
         return render_template("add.html")

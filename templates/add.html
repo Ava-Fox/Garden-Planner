@@ -10,4 +10,9 @@
             </div>
             <button type="submit">Add</button>
         </form>
+        <ul>
+            {% for plant in plants %}
+            <li>{{plant}}</li>
+            {% endfor %}
+        </ul>
 {% endblock %}
