@@ -27,3 +27,6 @@ TODO: Create database w/ Angela's data
 DONE: Create login and register page
 
 DONE: Navbar in css
+
+NOTE: DIF GIT BRANCHES FOR WORKING ON BIGGER PARTS OF Page
+  - GIT NEWBRANCH "HISTORY" FOR WORKING ON HISTORY PAGE

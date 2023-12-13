@@ -17,6 +17,15 @@ Session(app)
 
 db = SQL("sqlite:///garden.db")
 
+@app.route("/add", methods=["GET", "POST"])
+@login_required
+def add():
+    if request.method == "POST":
+        ...
+    
+    else:
+        return render_template("add.html")
+
 
 @app.route("/history")
 @login_required
@@ -27,6 +36,9 @@ def history():
 @app.route("/", methods=["GET", "POST"])
 @login_required
 def index():
+    # Check out if user has anything logged in their garden database
+    # If have, show them their current garden
+    # If not, redirect them to page where can add what have
     return render_template("index.html")
 
 @app.route("/plan", methods=["GET", "POST"])

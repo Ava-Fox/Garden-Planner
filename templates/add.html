@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block title %} Start Your Garden {% endblock %}
+
+{% block main %}
+    <p>Add plants in your current garden</p>
+        <form action="/add" method="post">
+            <div>
+                <input name="plant" placeholder="Add plant" type="text">
+            </div>
+            <button type="submit">Add</button>
+        </form>
+{% endblock %}

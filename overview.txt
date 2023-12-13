@@ -16,6 +16,7 @@ Index / My-Garden page:
     Maybe overview of current plants in garden? 
     Note section?
         Add note to database for next year?
+    New user: Add to what's currently growing/redirect to planning page?
 
 History Page:
     Show everything grew in past, along with some notes?
