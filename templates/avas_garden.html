@@ -1,15 +1,12 @@
 {% extends "layout.html" %}
 
-{% block title %} Ava's Garden {% endblock%}
+{% block title %} Ava's Garden {% endblock %}
 
 {% block main %}
     Try to layout each plot I have in the database
-   
-    {% for bed in range(1, 7) %}
-       <table>
-        
-       </table>>
-    {% endfor %}>
-    
-
+   <div>
+        {% for thing in things %}
+            <p> {{thing}} </p>
+        {% endfor %}
+   </div>
 {% endblock %}

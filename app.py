@@ -33,11 +33,11 @@ def add():
     else:
         return render_template("add.html")
 
-@app.route("/avas_garden", methods=["GET", "POST"])
+@app.route("/avas_garden")
 @login_required
 def avas_garden():
     garden = db.execute("SELECT * FROM plot;")
-    return render_template("avas_garden.html", garden=garden)
+    return render_template("avas_garden.html", things=garden)
 
 
 @app.route("/history")
