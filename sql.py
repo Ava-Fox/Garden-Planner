@@ -17,7 +17,7 @@ for y in range(1,5):
 
 # Now the 4x8
 for y in range(1, 5):
-    for x in range(1, 9):
+    for x in range(1, 11):
        db.execute("INSERT INTO plot (local_x, local_y, bed) VALUES (?, ?, ?);", x, y, 6)
 
 # Now the L's
