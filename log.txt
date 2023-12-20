@@ -30,3 +30,12 @@ DONE: Navbar in css
 
 NOTE: DIF GIT BRANCHES FOR WORKING ON BIGGER PARTS OF Page
   - GIT NEWBRANCH "HISTORY" FOR WORKING ON HISTORY PAGE
+
+TODO: How the heck do you plot each plot-id in a table?
+  I don't get it
+  I know each bed should be it's own table, and each local-y is it's own row, and each x is a td.
+  How the heck do you do it though???
+  I tried passing in the entire plot dataset as a dict through, and looping through each plot individually,
+  but I gave up and tried to seperate each bed into it's own dict but that confused me even more. 
+  I don't understaaaaand this is definitely possible but I don't know how to go about coding the process
+  of plotting each individual datapoint ugh :/

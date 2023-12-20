@@ -4,9 +4,11 @@
 
 {% block main %}
     Try to layout each plot I have in the database
-   <div>
-        {% for thing in things %}
-            <p> {{thing}} </p>
-        {% endfor %}
-   </div>
+
+            <!-- Ok, so: I need to plot each point in a table. 
+                 Each bed is it's own seperate table
+                 Each 'y' is a row
+                 Each 'x' is the td
+            -->
+            
 {% endblock %}

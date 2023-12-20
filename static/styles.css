@@ -14,3 +14,14 @@ nav .navbar-brand {
 main {
     text-align: center;
 }
+
+table {
+    border: 3px solid black;
+}
+
+td {
+    border: 3px solid black;
+}
+tr {
+    border: 3px solid black;
+}

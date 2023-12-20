@@ -36,9 +36,13 @@ def add():
 @app.route("/avas_garden")
 @login_required
 def avas_garden():
-    garden = db.execute("SELECT * FROM plot;")
-    return render_template("avas_garden.html", things=garden)
-
+    bed1 = db.execute("SELECT * FROM plot WHERE bed = 1;")
+    bed2 = db.execute("SELECT * FROM plot WHERE bed = 2;")
+    bed3 = db.execute("SELECT * FROM plot WHERE bed = 3;")
+    bed4 = db.execute("SELECT * FROM plot WHERE bed = 4;")
+    bed5 = db.execute("SELECT * FROM plot WHERE bed = 5;")
+    bed6 = db.execute("SELECT * FROM plot WHERE bed = 6;")
+    return render_template("avas_garden.html", bed1=bed1, bed2=bed2, bed3=bed3, bed4=bed4, bed5=bed5, bed6=bed6)
 
 @app.route("/history")
 @login_required
