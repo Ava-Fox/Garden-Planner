@@ -12,20 +12,23 @@
             -->
 
             <table>
-               <tr></tr>
-               {% set y = 1 %}
+               {% set y = bed3[0]['local_y'] %}
+               <p> y: {{ y }}</p>
                {% for plot in bed3 %}
                     {% if y == plot['local_y'] %}
                          <td>
                               {{ plot['local_x']}} , {{plot['local_y'] }}
                          </td>
+                         
                     {% else %}
+                    </tr>
                          <tr>
                               <td>
                                    {{ plot['local_x']}} , {{plot['local_y'] }}
                               </td>
-                         </tr>
+                         
                          {% set y = plot['local_y'] %}
+                         <p> y: {{y}} Local_y: {{ plot['local_y'] }}</p>
                     {% endif %}
 
                {% endfor %}
