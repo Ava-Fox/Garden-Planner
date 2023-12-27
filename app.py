@@ -22,10 +22,18 @@ db = SQL("sqlite:///garden.db")
 def add():
     if request.method == "POST":
         user_id = session["user_id"]
+        date = request.form.get("date")
         plants = request.form.get("plant")
         plants = plants.split()
-
+        where = request.form.get("location")
+        where = where.split()
+        data = db.execute("SELECT name FROM plants;")
+        
         # Check to see if user response matches with plants logged in database
+        for plant in plants:
+            if plant in data:
+                db.execute("INSERT INTO history VALUES ((SELECT id FROM plot WHERE local_x = ? AND local_y = ?), (SELECT id FROM plants WHERE name = ?), ?);", where[0], where[1], plant, date)
+
         # If so, add them to their garden table
 
         return render_template("add.html", plants=plants)

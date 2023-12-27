@@ -22,6 +22,8 @@ TODO: Create database w/ Angela's data
    
    Figure out how to scrub data from other sites.... 
 
+   HEIGHT IN INCHES, SPACING PER SQUARE FOOT
+
   
 
 DONE: Create login and register page
@@ -39,3 +41,10 @@ TODO: How the heck do you plot each plot-id in a table?
   but I gave up and tried to seperate each bed into it's own dict but that confused me even more. 
   I don't understaaaaand this is definitely possible but I don't know how to go about coding the process
   of plotting each individual datapoint ugh :/
+
+
+  TODO: Make it so a user can add plants into their history
+      Eventually I want to be able to have a visual of the garden with each
+      square-foot plot being a clickable item. Once selected, you can modify
+      it's history, add/remove a plant (maybe a little cartoon of that plant
+      shows up), and add notes about the plant that is currently planted there.
