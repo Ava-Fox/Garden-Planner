@@ -17,6 +17,10 @@ Session(app)
 
 db = SQL("sqlite:///garden.db")
 
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template("notfound.html"), 404
+
 @app.route("/add", methods=["GET", "POST"])
 @login_required
 def add():
