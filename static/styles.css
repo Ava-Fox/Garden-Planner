@@ -25,3 +25,8 @@ td {
 tr {
     border: 3px solid black;
 }
+
+img {
+    width: 50%;
+    height: 50%;
+}
