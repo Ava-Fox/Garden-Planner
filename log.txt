@@ -48,3 +48,6 @@ TODO: How the heck do you plot each plot-id in a table?
       square-foot plot being a clickable item. Once selected, you can modify
       it's history, add/remove a plant (maybe a little cartoon of that plant
       shows up), and add notes about the plant that is currently planted there.
+
+      TODO: Alter history table to include an id and a user_id reference
+            Figure out why it doesn't add to history table yet
