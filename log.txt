@@ -43,6 +43,14 @@ TODO: How the heck do you plot each plot-id in a table?
   of plotting each individual datapoint ugh :/
 
   - JINJA DOESN'T LET YOU UPDATE VARIABLES LIKE WOULD EXPECT
+  o Moved logic to app.py
+    - Trying to make a dictionary full of rows, each row containing a list
+      of plots associated with its y-value/current_row
+    - Not adding rows to dictionary, only adding every plot to row 1
+    - Seems like loop logic OK
+      - rows updating when should
+      - each bed accounted for
+
 
 
   TODO: Make it so a user can add plants into their history

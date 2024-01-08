@@ -10,24 +10,19 @@
                  Each 'y' is a row
                  Each 'x' is the td
             -->
-     {% for bed in beds %}
-          <div>
-          <table>
-               <tr><th>Bed {{bed[0]['bed']}}</th></tr>
-               {% set last_y = bed[0]['local_y'] %}
+     <table>
+          {% for row in rows %}
                <tr>
-               {% for plot in bed %}
-          
-                    {% if plot['local_y'] != last_y %}
-                         </tr>
-                         <tr>
-                    {% endif %}
-                    <td>{{plot['id']}}</td>
-
-                    {% set last_y = plot['local_y'] %}
-               {% endfor %}
-          </table>
+                    <td>
+                         {{row }}
+                    </td>
+               </tr>
+          {% endfor %}
+     </table>
+     
+          <div>
+          <p>{{rows}}</p>
           </div>
-     {% endfor %}
+
             
 {% endblock %}
