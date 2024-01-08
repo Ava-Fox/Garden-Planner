@@ -42,6 +42,8 @@ TODO: How the heck do you plot each plot-id in a table?
   I don't understaaaaand this is definitely possible but I don't know how to go about coding the process
   of plotting each individual datapoint ugh :/
 
+  - JINJA DOESN'T LET YOU UPDATE VARIABLES LIKE WOULD EXPECT
+
 
   TODO: Make it so a user can add plants into their history
       Eventually I want to be able to have a visual of the garden with each

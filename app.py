@@ -44,13 +44,20 @@ def add():
 @app.route("/avas_garden")
 @login_required
 def avas_garden():
+    # Wonder if can make more dynamic...
     bed1 = db.execute("SELECT * FROM plot WHERE bed = 1;")
     bed2 = db.execute("SELECT * FROM plot WHERE bed = 2;")
     bed3 = db.execute("SELECT * FROM plot WHERE bed = 3;")
     bed4 = db.execute("SELECT * FROM plot WHERE bed = 4;")
     bed5 = db.execute("SELECT * FROM plot WHERE bed = 5;")
     bed6 = db.execute("SELECT * FROM plot WHERE bed = 6;")
-    return render_template("avas_garden.html", bed1=bed1, bed2=bed2, bed3=bed3, bed4=bed4, bed5=bed5, bed6=bed6)
+    beds = [bed1, bed2, bed3, bed4, bed5, bed6]
+    for bed in beds:
+        for plot in bed:
+            if plot['local_y'] != last_y:
+                
+    print(bed1)
+    return render_template("avas_garden.html", beds=beds)
 
 @app.route("/history")
 @login_required
