@@ -49,17 +49,14 @@ def add():
 @login_required
 def avas_garden():
     # Wonder if can make more dynamic...
-    bed1 = db.execute("SELECT * FROM plot WHERE bed = 1 ORDER BY local_y;")
-    bed2 = db.execute("SELECT * FROM plot WHERE bed = 2 ORDER BY local_y;")
-    bed3 = db.execute("SELECT * FROM plot WHERE bed = 3 ORDER BY local_y;")
-    bed4 = db.execute("SELECT * FROM plot WHERE bed = 4 ORDER BY local_y;")
-    bed5 = db.execute("SELECT * FROM plot WHERE bed = 5 ORDER BY local_y;")
-    bed6 = db.execute("SELECT * FROM plot WHERE bed = 6 ORDER BY local_y;")
-    beds = [bed1, bed2, bed3, bed4, bed5, bed6]
+    beds = []
+    for i in range(1, 7):
+        i = db.execute("SELECT * FROM plot WHERE bed = ? ORDER BY local_y;", i)
+        beds.append(i)
+    print(f"BEDS: {beds}")
     rows = {1: [],}
     for bed in beds:
         # Seperate plots in each bed into list of rows?
-        last_y = bed[0]['local_y']
         current_row = bed[0]['local_y']
         # Too convoluted?
         # {
@@ -74,16 +71,14 @@ def avas_garden():
 
         # Likely rewriting over rows each bed
         for plot in bed:
-            if plot['local_y'] != last_y:
+            if plot['local_y'] != current_row:
                 #Create new row
                 current_row = plot['local_y']
-                if rows[current_row]:
+                if current_row in rows.keys():
                     rows[current_row].append(plot)
                 else:
-                    rows[current_row] = []
+                    rows[current_row] = [plot]
                 
-                #update last_y
-                last_y = plot['local_y']
                 print(f"Current row: {current_row}")
             # Add plot into current row
             else:
