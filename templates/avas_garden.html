@@ -12,11 +12,13 @@
             -->
      <table>
           {% for row in rows %}
-               <tr>
+              <tr> 
+                    {% for column in columns %}
                     <td>
-                         {{row }}
+                         {{column}}
                     </td>
-               </tr>
+                    {% endfor %}  
+              </tr>
           {% endfor %}
      </table>
      

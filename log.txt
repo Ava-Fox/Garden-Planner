@@ -51,6 +51,15 @@ TODO: How the heck do you plot each plot-id in a table?
       - rows updating when should
       - each bed accounted for
 
+  o html
+    Not transfering data correctly? Can't access data in each row, but
+    when go to print rows on screen it shows the structure all set up
+
+  o Help from heatsync:
+    Order everything in one SQL call, and then go through those plots and separate
+    into individual columns/rows.
+    
+
 
 
   TODO: Make it so a user can add plants into their history

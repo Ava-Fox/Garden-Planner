@@ -49,45 +49,30 @@ def add():
 @login_required
 def avas_garden():
     # Wonder if can make more dynamic...
-    beds = []
-    for i in range(1, 7):
-        i = db.execute("SELECT * FROM plot WHERE bed = ? ORDER BY local_y;", i)
-        beds.append(i)
-    print(f"BEDS: {beds}")
-    rows = {1: [],}
-    for bed in beds:
-        # Seperate plots in each bed into list of rows?
-        current_row = bed[0]['local_y']
-        # Too convoluted?
-        # {
-        #     1: [{'id': ..., 
-        #          'local_x': ...,
-        #          'local_y': 1,
-        #         },
-        #          {},
-        #          ],
-        #     2: [{...}, {}, ...],
-        # }
+    plots = db.execute("SELECT * FROM plot ORDER BY bed, local_y, local_x;")
+    columns = {}
+    rows = {}
+    beds = {
+        1: {
+            columns: {1: []},
+            rows: {1: []},
+        },
+    }
+    for plot in plots:
+        bed = plot['bed']
 
-        # Likely rewriting over rows each bed
-        for plot in bed:
-            if plot['local_y'] != current_row:
-                #Create new row
-                current_row = plot['local_y']
-                if current_row in rows.keys():
-                    rows[current_row].append(plot)
-                else:
-                    rows[current_row] = [plot]
-                
-                print(f"Current row: {current_row}")
-            # Add plot into current row
-            else:
-                rows[current_row].append(plot)
-                print(f"Current row: {current_row} bed: {plot['bed']}")
-            
-                
-    print(f"Rows: {rows}")
-    return render_template("avas_garden.html", rows=rows)
+        column = plot['local_x']
+        row = plot['local_y']
+        if column in columns.keys():
+            columns[column].append(plot['id'])
+        else:
+            columns[column] = [plot['id']]
+        if row in rows.keys():
+            rows[row].append(plot['id'])
+        else:
+            rows[row] = [plot['id']]
+        
+    return render_template("avas_garden.html", columns=columns, rows=rows)
 
 @app.route("/history")
 @login_required
