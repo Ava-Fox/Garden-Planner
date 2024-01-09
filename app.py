@@ -56,7 +56,7 @@ def avas_garden():
     for bed in beds:
         # Seperate plots in each bed into list of rows?
         last_y = bed[0]['local_y']
-        current_row = 1
+        current_row = bed[0]['local_y']
         # Too convoluted?
         # {
         #     1: [{'id': ..., 
@@ -68,12 +68,15 @@ def avas_garden():
         #     2: [{...}, {}, ...],
         # }
 
+        # Likely rewriting over rows each bed
         for plot in bed:
             if plot['local_y'] != last_y:
                 #Create new row
-                current_row += 1
-                rows[current_row] = []
-                rows[current_row].append(plot)
+                current_row = plot['local_y']
+                if rows[current_row]:
+                    rows[current_row].append(plot)
+                else:
+                    rows[current_row] = []
                 
                 #update last_y
                 last_y = plot['local_y']
