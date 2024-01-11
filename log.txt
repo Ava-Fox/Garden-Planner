@@ -33,7 +33,7 @@ DONE: Navbar in css
 NOTE: DIF GIT BRANCHES FOR WORKING ON BIGGER PARTS OF Page
   - GIT NEWBRANCH "HISTORY" FOR WORKING ON HISTORY PAGE
 
-TODO: How the heck do you plot each plot-id in a table?
+REWORKED: How the heck do you plot each plot-id in a table?
   I don't get it
   I know each bed should be it's own table, and each local-y is it's own row, and each x is a td.
   How the heck do you do it though???
@@ -58,6 +58,9 @@ TODO: How the heck do you plot each plot-id in a table?
   o Help from heatsync:
     Order everything in one SQL call, and then go through those plots and separate
     into individual columns/rows.
+
+  I need each bed to be a separate table because there will inevitably be
+  multiple plots with the same coordinates
     
 
 
@@ -70,3 +73,6 @@ TODO: How the heck do you plot each plot-id in a table?
 
       TODO: Alter history table to include an id and a user_id reference
             Figure out why it doesn't add to history table yet
+
+NEWPLAN: Focus on making a cute garden log of own garden
+    

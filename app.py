@@ -50,14 +50,15 @@ def add():
 def avas_garden():
     # Wonder if can make more dynamic...
     plots = db.execute("SELECT * FROM plot ORDER BY bed, local_y, local_x;")
+    print(plots)
     columns = {}
     rows = {}
-    beds = {
-        1: {
-            columns: {1: []},
-            rows: {1: []},
-        },
-    }
+    # beds = {
+    #     1: {
+    #        columns: {1: []},
+    #         rows: {1: []},
+    #    },
+    # }
     for plot in plots:
         bed = plot['bed']
 
