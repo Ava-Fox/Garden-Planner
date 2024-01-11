@@ -89,11 +89,6 @@ def index():
     # If not, redirect them to page where can add what have
     return render_template("index.html")
 
-@app.route("/plan", methods=["GET", "POST"])
-@login_required
-def plan():
-    return render_template("plan.html")
-
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
