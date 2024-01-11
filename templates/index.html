@@ -1,9 +1,83 @@
 {% extends "layout.html" %}
 
-{% block title %} Index {% endblock %}
-
 {% block main %}
-    <h1>
-        Hello! You've made it to the index :D
-    </h1>
+<div id="square_garden_image">
+    <img src="static/images/square_garden.png" alt="Drawn overview of square garden"></img>
+</div>
+<br>
+<div style="text-align: left;">
+    <div>
+        <h3>
+            NorthWest 'L'
+        </h3>
+        <ul>
+            <li>
+                <button>
+                    This is where I list out plots
+                </button>
+            </li>
+        </ul>
+    </div>
+    <div>
+        <h3>
+            NorthEast 'L'
+        </h3>
+        <ul>
+            {% for i in range(1, 4)%}
+                <li>
+                    <button type="submit">
+                        Plot Button
+                    </button>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+    <div>
+        <h3>
+            Center Square
+        </h3>
+        <ul>
+            {% for i in range(1, 4)%}
+                <li>
+                    <button type="submit">
+                        Plot Button
+                    </button>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+    <div>
+        <h3>
+            SouthWest 'L'
+        </h3>
+        <ul>
+            {% for i in range(1, 4)%}
+                <li>
+                    <button type="submit">
+                        Plot Button
+                    </button>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+    <div>
+        <h3>
+            SouthEast 'L'
+        </h3>
+        <ul>
+            {% for i in range(1, 4)%}
+                <li>
+                    <button type="submit">
+                        Plot Button
+                    </button>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+   
+</div>
+    
 {% endblock %}

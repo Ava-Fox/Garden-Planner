@@ -10,28 +10,21 @@
                  Each 'y' is a row
                  Each 'x' is the td
             -->
+     <table>
+          {% for row in rows %}
+              <tr> 
+                    {% for column in columns %}
+                    <td>
+                         {{column}}
+                    </td>
+                    {% endfor %}  
+              </tr>
+          {% endfor %}
+     </table>
+     
+          <div>
+          <p>{{rows}}</p>
+          </div>
 
-            <table>
-               {% set y = bed3[0]['local_y'] %}
-               <p> y: {{ y }}</p>
-               {% for plot in bed3 %}
-                    {% if y == plot['local_y'] %}
-                         <td>
-                              {{ plot['local_x']}} , {{plot['local_y'] }}
-                         </td>
-                         
-                    {% else %}
-                    </tr>
-                         <tr>
-                              <td>
-                                   {{ plot['local_x']}} , {{plot['local_y'] }}
-                              </td>
-                         
-                         {% set y = plot['local_y'] %}
-                         <p> y: {{y}} Local_y: {{ plot['local_y'] }}</p>
-                    {% endif %}
-
-               {% endfor %}
-            </table>
             
 {% endblock %}

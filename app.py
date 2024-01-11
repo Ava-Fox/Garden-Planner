@@ -48,13 +48,32 @@ def add():
 @app.route("/avas_garden")
 @login_required
 def avas_garden():
-    bed1 = db.execute("SELECT * FROM plot WHERE bed = 1;")
-    bed2 = db.execute("SELECT * FROM plot WHERE bed = 2;")
-    bed3 = db.execute("SELECT * FROM plot WHERE bed = 3;")
-    bed4 = db.execute("SELECT * FROM plot WHERE bed = 4;")
-    bed5 = db.execute("SELECT * FROM plot WHERE bed = 5;")
-    bed6 = db.execute("SELECT * FROM plot WHERE bed = 6;")
-    return render_template("avas_garden.html", bed1=bed1, bed2=bed2, bed3=bed3, bed4=bed4, bed5=bed5, bed6=bed6)
+    # Wonder if can make more dynamic...
+    plots = db.execute("SELECT * FROM plot ORDER BY bed, local_y, local_x;")
+    print(plots)
+    columns = {}
+    rows = {}
+    # beds = {
+    #     1: {
+    #        columns: {1: []},
+    #         rows: {1: []},
+    #    },
+    # }
+    for plot in plots:
+        bed = plot['bed']
+
+        column = plot['local_x']
+        row = plot['local_y']
+        if column in columns.keys():
+            columns[column].append(plot['id'])
+        else:
+            columns[column] = [plot['id']]
+        if row in rows.keys():
+            rows[row].append(plot['id'])
+        else:
+            rows[row] = [plot['id']]
+        
+    return render_template("avas_garden.html", columns=columns, rows=rows)
 
 @app.route("/history")
 @login_required
@@ -69,11 +88,6 @@ def index():
     # If have, show them their current garden
     # If not, redirect them to page where can add what have
     return render_template("index.html")
-
-@app.route("/plan", methods=["GET", "POST"])
-@login_required
-def plan():
-    return render_template("plan.html")
 
 
 @app.route("/login", methods=["GET", "POST"])
