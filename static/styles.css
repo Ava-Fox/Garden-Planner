@@ -18,6 +18,9 @@ button:hover {
     background-color: #DFC8AC;
 }
 
+.beds {
+    text-align: left;
+}
 .error {
     color: rgb(195, 70, 70);
 }
