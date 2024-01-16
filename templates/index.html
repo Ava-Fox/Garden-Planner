@@ -11,11 +11,25 @@
             NorthWest 'L'
         </h3>
         <ul>
-            <li>
-                <button>
-                    This is where I list out plots
-                </button>
-            </li>
+            {% for x in range(1, 9) %}
+                {% if x > 4 %}
+                    {% for y in range(1, 5) %}
+                        <li>
+                            <button>
+                                Plot {{x}}, {{y}}
+                            </button>
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    {% for y in range(1, 9) %}
+                        <li>
+                            <button>
+                                Plot {{x}}, {{y}}
+                            </button>
+                        </li>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
         </ul>
     </div>
     <div>
@@ -23,12 +37,24 @@
             NorthEast 'L'
         </h3>
         <ul>
-            {% for i in range(1, 4)%}
-                <li>
-                    <button type="submit">
-                        Plot Button
-                    </button>
-                </li>
+            {% for x in range(1, 9) %} 
+                {% if x > 4 %}
+                    {% for y in range(5, 9) %}
+                        <li>
+                            <button>
+                                Plot {{x}}, {{y}}
+                            </button>
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    {% for y in range(1, 9) %}
+                        <li>
+                            <button>
+                                Plot {{x}}, {{y}}
+                            </button>
+                        </li>
+                    {% endfor %}
+                {% endif %}
             {% endfor %}
         </ul>
     </div>
@@ -38,8 +64,8 @@
             Center Square
         </h3>
         <ul>
-            {% for y in range(1, 5) %}
-                {% for x in range(1, 5) %}
+            {% for x in range(1, 5) %}
+                {% for y in range(1, 5) %}
                 
                     <li>
                         <button type="submit">
@@ -56,12 +82,24 @@
             SouthWest 'L'
         </h3>
         <ul>
-            {% for i in range(1, 4)%}
-                <li>
-                    <button type="submit">
-                        Plot Button
-                    </button>
-                </li>
+            {% for x in range(1, 9) %}
+                {% if x <= 4 %}
+                    {% for y in range(1, 5) %}
+                        <li>
+                            <button>
+                                Plot {{x}}, {{y}}
+                            </button>
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    {% for y in range(1, 9) %}
+                        <li>
+                            <button>
+                                Plot {{x}}, {{y}}
+                            </button>
+                        </li>
+                    {% endfor %}
+                {% endif %}
             {% endfor %}
         </ul>
     </div>
@@ -71,12 +109,24 @@
             SouthEast 'L'
         </h3>
         <ul>
-            {% for i in range(1, 4)%}
-                <li>
-                    <button type="submit">
-                        Plot Button
-                    </button>
-                </li>
+            {% for x in range(1, 9) %}
+                {% if x <= 4 %}
+                    {% for y in range(5, 9) %}
+                        <li>
+                            <button>
+                                Plot {{x}}, {{y}}
+                            </button>
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    {% for y in range(1, 9) %}
+                        <li>
+                            <button>
+                                Plot {{x}}, {{y}}
+                            </button>
+                        </li>
+                    {% endfor %}
+                {% endif %}
             {% endfor %}
         </ul>
     </div>
