@@ -36,7 +36,7 @@ def add():
         # Check to see if user response matches with plants logged in database
         for plant in plants:
             if plant in data:
-                db.execute("INSERT INTO history VALUES ((SELECT id FROM plot WHERE local_x = ? AND local_y = ?), (SELECT id FROM plants WHERE name = ?), ?);", where[0], where[1], plant, date)
+                db.execute("INSERT INTO history VALUES ((SELECT id FROM plot WHERE bed = ? AND local_x = ? AND local_y = ?), (SELECT id FROM plants WHERE name = ?), ?);", where[0], where[1], where[2], plant, date)
 
         # If so, add them to their garden table
 
