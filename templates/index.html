@@ -7,30 +7,33 @@
 <br>
 <div style="text-align: left;">
     <div>
-        <h3>
-            NorthWest 'L'
-        </h3>
-        <ul>
-            {% for x in range(1, 9) %}
-                {% if x > 4 %}
-                    {% for y in range(1, 5) %}
-                        <li>
-                            <button>
-                                Plot {{x}}, {{y}}
-                            </button>
-                        </li>
-                    {% endfor %}
-                {% else %}
-                    {% for y in range(1, 9) %}
-                        <li>
-                            <button>
-                                Plot {{x}}, {{y}}
-                            </button>
-                        </li>
-                    {% endfor %}
-                {% endif %}
-            {% endfor %}
-        </ul>
+        <form action="plothistory" method="post">
+            <h3>
+                NorthWest 'L'
+            </h3>
+            <ul>
+                {% for x in range(1, 9) %}
+                    {% if x > 4 %}
+                        {% for y in range(1, 5) %}
+                            <li>
+                                <button type="submit">
+                                    Plot {{x}}, {{y}}
+                                </button>
+                            </li>
+                        {% endfor %}
+                    {% else %}
+                        {% for y in range(1, 9) %}
+                            <li>
+                                <button type="submit">
+                                    Plot {{x}}, {{y}}
+                                </button>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </form>
+        
     </div>
     <div>
         <h3>
@@ -41,7 +44,7 @@
                 {% if x > 4 %}
                     {% for y in range(5, 9) %}
                         <li>
-                            <button>
+                            <button type="submit">
                                 Plot {{x}}, {{y}}
                             </button>
                         </li>
@@ -49,7 +52,7 @@
                 {% else %}
                     {% for y in range(1, 9) %}
                         <li>
-                            <button>
+                            <button type="submit">
                                 Plot {{x}}, {{y}}
                             </button>
                         </li>
@@ -86,7 +89,7 @@
                 {% if x <= 4 %}
                     {% for y in range(1, 5) %}
                         <li>
-                            <button>
+                            <button type="submit">
                                 Plot {{x}}, {{y}}
                             </button>
                         </li>
@@ -94,7 +97,7 @@
                 {% else %}
                     {% for y in range(1, 9) %}
                         <li>
-                            <button>
+                            <button type="submit">
                                 Plot {{x}}, {{y}}
                             </button>
                         </li>
@@ -113,7 +116,7 @@
                 {% if x <= 4 %}
                     {% for y in range(5, 9) %}
                         <li>
-                            <button>
+                            <button type="submit">
                                 Plot {{x}}, {{y}}
                             </button>
                         </li>
@@ -121,7 +124,7 @@
                 {% else %}
                     {% for y in range(1, 9) %}
                         <li>
-                            <button>
+                            <button type="submit">
                                 Plot {{x}}, {{y}}
                             </button>
                         </li>
@@ -139,7 +142,7 @@
             {% for x in range(1, 11) %}
                 {% for y in range(1, 5) %}
                     <li>
-                        <button>
+                        <button type="submit">
                             Plot {{x}}, {{y}}
                         </button>
                     </li>

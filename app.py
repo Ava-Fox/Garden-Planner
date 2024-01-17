@@ -84,10 +84,10 @@ def history():
 @app.route("/", methods=["GET", "POST"])
 @login_required
 def index():
-    # Check out if user has anything logged in their garden database
-    # If have, show them their current garden
-    # If not, redirect them to page where can add what have
-    return render_template("index.html")
+    if request.method == "POST":
+        return render_template("plothistory.html")
+    else:
+        return render_template("index.html")
 
 
 @app.route("/login", methods=["GET", "POST"])

@@ -80,3 +80,5 @@ TODO: Make able to delete plants from current garden
 
 TODO: Click plot button and it redirects to its history page
       - functionality to add/delete right there too? 
+
+TODO: How make layout of plots more pleasant?
