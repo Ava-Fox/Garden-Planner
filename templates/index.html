@@ -7,7 +7,7 @@
 <br>
 <div style="text-align: left;">
     <div>
-        <form action="plothistory" method="post">
+        <form action="/" method="post">
             <h3>
                 NorthWest 'L'
             </h3>
@@ -16,7 +16,7 @@
                     {% if x > 4 %}
                         {% for y in range(1, 5) %}
                             <li>
-                                <button type="submit">
+                                <button name="clicked-button" value="{{x}}{{y}}" type="submit">
                                     Plot {{x}}, {{y}}
                                 </button>
                             </li>

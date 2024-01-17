@@ -85,7 +85,10 @@ def history():
 @login_required
 def index():
     if request.method == "POST":
-        return render_template("plothistory.html")
+        print("POST")
+        button = request.form.get("clicked-button")
+        print(button)
+        return render_template("index.html")
     else:
         return render_template("index.html")
 
