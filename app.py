@@ -16,6 +16,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 db = SQL("sqlite:///garden.db")
+button = None
 
 @app.errorhandler(404)
 def page_not_found(error):
@@ -87,10 +88,10 @@ def index():
     # When click button, redirect to a button-history page
     # Check to see if any history for that plot, and show on screen
     if request.method == "POST":
-        print("POST")
         button = request.form.get("clicked-button")
+        button = button.split()
         print(button)
-        return redirect("plothistory")
+        return render_template("plothistory.html", button=button)
     else:
         return render_template("index.html")
 
