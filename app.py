@@ -90,8 +90,10 @@ def index():
     if request.method == "POST":
         button = request.form.get("clicked-button")
         button = button.split()
+        history = db.execute("SELECT * FROM history WHERE plot_id = (SELECT id FROM plot WHERE bed = ? AND local_x = ? AND local_y = ?);", button[0], button[1], button[2])
+        print(history)
         print(button)
-        return render_template("plothistory.html", button=button)
+        return render_template("plothistory.html", button=button, history=history)
     else:
         return render_template("index.html")
 

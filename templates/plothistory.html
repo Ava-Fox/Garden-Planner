@@ -6,6 +6,12 @@
 
 {% block main %}
     <h3>
-        History for Bed {{button[0]}} plot {{button[1]}}, {{button[2]}}
+        History for Bed {{button[0]}} Plot {{button[1]}}, {{button[2]}}
     </h3>
+
+    {% if history %}
+        {{history}}
+    {% else %}
+        <p> Looks like there's no history for this plot yet! </p>
+    {% endif %}
 {% endblock %}
