@@ -84,13 +84,19 @@ def history():
 @app.route("/", methods=["GET", "POST"])
 @login_required
 def index():
+    # When click button, redirect to a button-history page
+    # Check to see if any history for that plot, and show on screen
     if request.method == "POST":
         print("POST")
         button = request.form.get("clicked-button")
         print(button)
-        return render_template("index.html")
+        return redirect("plothistory")
     else:
         return render_template("index.html")
+
+@app.route("/plothistory", methods=["GET", "POST"])
+def plothistory():
+    return render_template("plothistory.html")
 
 
 @app.route("/login", methods=["GET", "POST"])
