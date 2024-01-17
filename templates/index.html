@@ -12,19 +12,19 @@
                 NorthWest 'L'
             </h3>
             <ul>
-                {% for x in range(1, 9) %}
-                    {% if x > 4 %}
-                        {% for y in range(1, 5) %}
+                {% for y in range(1, 9) %}
+                    {% if y > 4 %}
+                        {% for x in range(1, 5) %}
                             <li>
-                                <button name="clicked-button" value="{{x}}{{y}}" type="submit">
+                                <button name="clicked-button" value="1 {{x}} {{y}}" type="submit">
                                     Plot {{x}}, {{y}}
                                 </button>
                             </li>
                         {% endfor %}
                     {% else %}
-                        {% for y in range(1, 9) %}
+                        {% for x in range(1, 9) %}
                             <li>
-                                <button type="submit">
+                                <button name="clicked-button" value="1 {{x}} {{y}}" type="submit">
                                     Plot {{x}}, {{y}}
                                 </button>
                             </li>
@@ -40,9 +40,9 @@
             NorthEast 'L'
         </h3>
         <ul>
-            {% for x in range(1, 9) %} 
-                {% if x > 4 %}
-                    {% for y in range(5, 9) %}
+            {% for y in range(1, 9) %} 
+                {% if y > 4 %}
+                    {% for x in range(5, 9) %}
                         <li>
                             <button type="submit">
                                 Plot {{x}}, {{y}}
@@ -50,7 +50,7 @@
                         </li>
                     {% endfor %}
                 {% else %}
-                    {% for y in range(1, 9) %}
+                    {% for x in range(1, 9) %}
                         <li>
                             <button type="submit">
                                 Plot {{x}}, {{y}}
@@ -67,8 +67,8 @@
             Center Square
         </h3>
         <ul>
-            {% for x in range(1, 5) %}
-                {% for y in range(1, 5) %}
+            {% for y in range(1, 5) %}
+                {% for x in range(1, 5) %}
                 
                     <li>
                         <button type="submit">
@@ -85,9 +85,9 @@
             SouthWest 'L'
         </h3>
         <ul>
-            {% for x in range(1, 9) %}
-                {% if x <= 4 %}
-                    {% for y in range(1, 5) %}
+            {% for y in range(1, 9) %}
+                {% if y <= 4 %}
+                    {% for x in range(1, 5) %}
                         <li>
                             <button type="submit">
                                 Plot {{x}}, {{y}}
@@ -95,7 +95,7 @@
                         </li>
                     {% endfor %}
                 {% else %}
-                    {% for y in range(1, 9) %}
+                    {% for x in range(1, 9) %}
                         <li>
                             <button type="submit">
                                 Plot {{x}}, {{y}}
@@ -112,9 +112,9 @@
             SouthEast 'L'
         </h3>
         <ul>
-            {% for x in range(1, 9) %}
-                {% if x <= 4 %}
-                    {% for y in range(5, 9) %}
+            {% for y in range(1, 9) %}
+                {% if y <= 4 %}
+                    {% for x in range(5, 9) %}
                         <li>
                             <button type="submit">
                                 Plot {{x}}, {{y}}
@@ -122,7 +122,7 @@
                         </li>
                     {% endfor %}
                 {% else %}
-                    {% for y in range(1, 9) %}
+                    {% for x in range(1, 9) %}
                         <li>
                             <button type="submit">
                                 Plot {{x}}, {{y}}
@@ -139,8 +139,8 @@
             Shade Garden
         </h3>
         <ul>
-            {% for x in range(1, 11) %}
-                {% for y in range(1, 5) %}
+            {% for y in range(1, 11) %}
+                {% for x in range(1, 5) %}
                     <li>
                         <button type="submit">
                             Plot {{x}}, {{y}}
