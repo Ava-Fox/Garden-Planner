@@ -90,7 +90,7 @@ def index():
     if request.method == "POST":
         button = request.form.get("clicked-button")
         button = button.split()
-        history = db.execute("SELECT * FROM history WHERE plot_id = (SELECT id FROM plot WHERE bed = ? AND local_x = ? AND local_y = ?);", button[0], button[1], button[2])
+        history = db.execute("SELECT date, name, seed_source, notes FROM history JOIN plants ON history.plant_id = plants.id WHERE plot_id = (SELECT id FROM plot WHERE bed = ? AND local_x = ? AND local_y = ?);", button[0], button[1], button[2])
         print(history)
         print(button)
         return render_template("plothistory.html", button=button, history=history)
@@ -101,6 +101,12 @@ def index():
 def plothistory():
     return render_template("plothistory.html")
 
+@app.route("/notes", methods=["GET", "POST"])
+def notes():
+    if request.method == "POST":
+        notes = request.form.get("notes")
+        print(notes)
+        return redirect("/")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
