@@ -90,19 +90,19 @@ def index():
     if request.method == "POST":
         button = request.form.get("clicked-button")
         button = button.split()
-        history = db.execute("SELECT history.id, date, name, seed_source, notes FROM history JOIN plants ON history.plant_id = plants.id WHERE plot_id = (SELECT id FROM plot WHERE bed = ? AND local_x = ? AND local_y = ?);", button[0], button[1], button[2])
         session['button'] = button
-        session['history'] = history
-        return redirect(url_for('plothistory', button=button, history=history))
+        return redirect(url_for('plothistory', button=button))
     else:
         return render_template("index.html")
 
 @app.route("/plothistory", methods=["GET", "POST"])
 def plothistory():
-    history = session.get('history')
     button = session.get('button')
-    print(history)
-    print(button)
+    history = db.execute("SELECT history.id, date, name, seed_source, notes FROM history JOIN plants ON history.plant_id = plants.id WHERE plot_id = (SELECT id FROM plot WHERE bed = ? AND local_x = ? AND local_y = ?);", button[0], button[1], button[2])
+    if request.method == "POST":
+        notes = request.form.get("notes")
+        print(notes)
+        db.execute("UPDATE history SET notes = ? WHERE id = ?;", notes, history[0]['id'])
     return render_template("plothistory.html", button=button, history=history)
 
 @app.route("/notes", methods=["GET", "POST"])
