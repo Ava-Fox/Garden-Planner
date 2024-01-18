@@ -2,7 +2,7 @@ import os
 
 from cs50 import SQL
 from datetime import date
-from flask import Flask, flash, redirect, render_template, request, session
+from flask import Flask, flash, redirect, render_template, request, session, url_for
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -90,21 +90,26 @@ def index():
     if request.method == "POST":
         button = request.form.get("clicked-button")
         button = button.split()
-        history = db.execute("SELECT date, name, seed_source, notes FROM history JOIN plants ON history.plant_id = plants.id WHERE plot_id = (SELECT id FROM plot WHERE bed = ? AND local_x = ? AND local_y = ?);", button[0], button[1], button[2])
-        print(history)
-        print(button)
-        return render_template("plothistory.html", button=button, history=history)
+        history = db.execute("SELECT history.id, date, name, seed_source, notes FROM history JOIN plants ON history.plant_id = plants.id WHERE plot_id = (SELECT id FROM plot WHERE bed = ? AND local_x = ? AND local_y = ?);", button[0], button[1], button[2])
+        session['button'] = button
+        session['history'] = history
+        return redirect(url_for('plothistory', button=button, history=history))
     else:
         return render_template("index.html")
 
 @app.route("/plothistory", methods=["GET", "POST"])
 def plothistory():
-    return render_template("plothistory.html")
+    history = session.get('history')
+    button = session.get('button')
+    print(history)
+    print(button)
+    return render_template("plothistory.html", button=button, history=history)
 
 @app.route("/notes", methods=["GET", "POST"])
 def notes():
     if request.method == "POST":
         notes = request.form.get("notes")
+        # db.execute("INSERT INTO history notes VALUES ? WHERE plot_id = ? AND user_id = ?;", notes, )
         print(notes)
         return redirect("/")
 
@@ -180,3 +185,5 @@ def register():
     else:
         return render_template("register.html")
     
+if __name__ == "__main__":
+    app.run(debug=True)
