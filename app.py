@@ -46,35 +46,6 @@ def add():
     else:
         return render_template("add.html")
 
-@app.route("/avas_garden")
-@login_required
-def avas_garden():
-    # Wonder if can make more dynamic...
-    plots = db.execute("SELECT * FROM plot ORDER BY bed, local_y, local_x;")
-    print(plots)
-    columns = {}
-    rows = {}
-    # beds = {
-    #     1: {
-    #        columns: {1: []},
-    #         rows: {1: []},
-    #    },
-    # }
-    for plot in plots:
-        bed = plot['bed']
-
-        column = plot['local_x']
-        row = plot['local_y']
-        if column in columns.keys():
-            columns[column].append(plot['id'])
-        else:
-            columns[column] = [plot['id']]
-        if row in rows.keys():
-            rows[row].append(plot['id'])
-        else:
-            rows[row] = [plot['id']]
-        
-    return render_template("avas_garden.html", columns=columns, rows=rows)
 
 @app.route("/history")
 @login_required
@@ -101,8 +72,12 @@ def plothistory():
     history = db.execute("SELECT history.id, date, name, seed_source, notes FROM history JOIN plants ON history.plant_id = plants.id WHERE plot_id = (SELECT id FROM plot WHERE bed = ? AND local_x = ? AND local_y = ?);", button[0], button[1], button[2])
     if request.method == "POST":
         notes = request.form.get("notes")
+        current_notes = db.execute("SELECT notes FROM history WHERE id = ?", history[0]['id'])
+        current_notes = current_notes[0]['notes']
+        notes = f"{notes} \n{current_notes}"
         print(notes)
         db.execute("UPDATE history SET notes = ? WHERE id = ?;", notes, history[0]['id'])
+        return render_template("plothistory.html", button=button, history=history)
     return render_template("plothistory.html", button=button, history=history)
 
 @app.route("/notes", methods=["GET", "POST"])
