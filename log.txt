@@ -85,5 +85,6 @@ TODO: How make layout of plots more pleasant?
 
 TODO: Make able add notes
     - wonder how to do without having to redirect to another page?
-
+  - BUG: WHEN ADDING ADDITIONAL NOTES TO OTHER COLUMNS,
+  THE PAGE ONLY HAS THE FIRST COLUMN'S INFO SO IT WON'T UPDATE ACTUAL ONE WANT
 TODO: Alter database to coincide better with new direction

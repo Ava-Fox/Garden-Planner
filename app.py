@@ -32,11 +32,14 @@ def add():
         bed = request.form.get("bed")
         x = request.form.get("x")
         y = request.form.get("y")
+        seed_source = request.form.get("seed_source")
+        notes = request.form.get("notes")
 
         plant_id = db.execute("SELECT id FROM plants WHERE name = ?;", plant)
-        plant_id = plant_id[0]['id']
+      
         if plant_id:
-            db.execute("INSERT INTO history (plot_id, plant_id, date) VALUES ((SELECT id FROM plot WHERE bed = ? AND local_x = ? AND local_y = ?), ?, ?);", bed, x, y, plant_id, date)
+            plant_id = plant_id[0]['id']
+            db.execute("INSERT INTO history (plot_id, plant_id, date, seed_source, notes) VALUES ((SELECT id FROM plot WHERE bed = ? AND local_x = ? AND local_y = ?), ?, ?, ?, ?);", bed, x, y, plant_id, date, seed_source, notes)
         
         # Check to see if user response matches with plants logged in database
         
