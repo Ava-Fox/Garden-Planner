@@ -9,16 +9,19 @@
                 <input name="plant" placeholder="Add plant" type="text">
             </div>
             <div>
-                <input name="location" placeholder="Location" type="text">
+                <input name="bed" placeholder="bed" type="text">
+                <input name="x" placeholder="x" type="text">
+                <input name="y" placeholder="y" type="text">
+            </div>
+            <div>
+                <input name="seed_source" placeholder="Seed source" type="text">
+            </div>
+            <div>
+                <input name="notes" placeholder="Notes" type="text">
             </div>
             <div>
                 <input name="date" placeholder="date" type="date">
             </div>
             <button type="submit">Add</button>
         </form>
-        <ul>
-            {% for plant in plants %}
-            <li>{{plant}}</li>
-            {% endfor %}
-        </ul>
 {% endblock %}
