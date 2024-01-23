@@ -81,7 +81,6 @@ def plothistory():
         notes = request.form.get("notes")
         notes_id = request.form.get("notes_id")
         current_notes = db.execute("SELECT notes FROM history WHERE id = ?", notes_id)
-        print(current_notes)
         current_notes = current_notes[0]['notes']
         notes = f"{notes} \n{current_notes}"
         db.execute("UPDATE history SET notes = ? WHERE id = ?;", notes, notes_id)
