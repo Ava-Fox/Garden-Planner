@@ -34,17 +34,31 @@ main {
 }
 
 table {
-    border: 3px solid black;
+    border: 2px solid black;
+    text-align: center;
+    width: 50%;
+    margin-top: 50px;
 }
 
 td {
-    border: 3px solid black;
+    border: 1px solid black;
 }
-tr {
-    border: 3px solid black;
+
+tr:nth-child(even) {
+    background-color:  #ffe4c4;
 }
 
 img {
     width: 50%;
     height: 50%;
+}
+
+#test {
+    background-color:#BFB2A2;
+    border-radius: 50%;
+    margin: auto;
+    margin-top: 20px;
+    width: 500px;
+    height: 20px;
+    text-align: center;
 }

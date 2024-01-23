@@ -2,7 +2,7 @@ import os
 
 from cs50 import SQL
 from datetime import date
-from flask import Flask, flash, redirect, render_template, request, session
+from flask import Flask, flash, redirect, render_template, request, session, url_for
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -16,6 +16,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 db = SQL("sqlite:///garden.db")
+button = None
 
 @app.errorhandler(404)
 def page_not_found(error):
@@ -27,53 +28,31 @@ def add():
     if request.method == "POST":
         user_id = session["user_id"]
         date = request.form.get("date")
-        plants = request.form.get("plant")
-        plants = plants.split()
-        where = request.form.get("location")
-        where = where.split()
-        data = db.execute("SELECT name FROM plants;")
+        plant = request.form.get("plant")
+        bed = request.form.get("bed")
+        x = request.form.get("x")
+        y = request.form.get("y")
+        seed_source = request.form.get("seed_source")
+        notes = request.form.get("notes")
+
+        plant_id = db.execute("SELECT id FROM plants WHERE name = ?;", plant)
+      
+        if plant_id:
+            plant_id = plant_id[0]['id']
+            db.execute("INSERT INTO history (plot_id, plant_id, date, seed_source, notes) VALUES ((SELECT id FROM plot WHERE bed = ? AND local_x = ? AND local_y = ?), ?, ?, ?, ?);", bed, x, y, plant_id, date, seed_source, notes)
+        else:
+            db.execute("INSERT INTO plants (name) VALUES (?);", plant.lower())
+            db.execute("INSERT INTO history(plot_id, plant_id, date, seed_source, notes) VALUES ((SELECT id FROM plot WHERE bed = ? AND local_x = ? AND local_y = ?), (SELECT id FROM plants WHERE name = ?), ?, ?, ?);", bed, x, y, plant, date, seed_source, notes)
         
         # Check to see if user response matches with plants logged in database
-        for plant in plants:
-            if plant in data:
-                db.execute("INSERT INTO history VALUES ((SELECT id FROM plot WHERE local_x = ? AND local_y = ?), (SELECT id FROM plants WHERE name = ?), ?);", where[0], where[1], plant, date)
-
+        
         # If so, add them to their garden table
 
-        return render_template("add.html", plants=plants)
+        return render_template("add.html")
     
     else:
         return render_template("add.html")
 
-@app.route("/avas_garden")
-@login_required
-def avas_garden():
-    # Wonder if can make more dynamic...
-    plots = db.execute("SELECT * FROM plot ORDER BY bed, local_y, local_x;")
-    print(plots)
-    columns = {}
-    rows = {}
-    # beds = {
-    #     1: {
-    #        columns: {1: []},
-    #         rows: {1: []},
-    #    },
-    # }
-    for plot in plots:
-        bed = plot['bed']
-
-        column = plot['local_x']
-        row = plot['local_y']
-        if column in columns.keys():
-            columns[column].append(plot['id'])
-        else:
-            columns[column] = [plot['id']]
-        if row in rows.keys():
-            rows[row].append(plot['id'])
-        else:
-            rows[row] = [plot['id']]
-        
-    return render_template("avas_garden.html", columns=columns, rows=rows)
 
 @app.route("/history")
 @login_required
@@ -84,11 +63,38 @@ def history():
 @app.route("/", methods=["GET", "POST"])
 @login_required
 def index():
-    # Check out if user has anything logged in their garden database
-    # If have, show them their current garden
-    # If not, redirect them to page where can add what have
-    return render_template("index.html")
+    # When click button, redirect to a button-history page
+    # Check to see if any history for that plot, and show on screen
+    if request.method == "POST":
+        button = request.form.get("clicked-button")
+        button = button.split()
+        session['button'] = button
+        return redirect(url_for('plothistory', button=button))
+    else:
+        return render_template("index.html")
 
+@app.route("/plothistory", methods=["GET", "POST"])
+def plothistory():
+    button = session.get('button')
+    history = db.execute("SELECT history.id, date, name, seed_source, notes FROM history JOIN plants ON history.plant_id = plants.id WHERE plot_id = (SELECT id FROM plot WHERE bed = ? AND local_x = ? AND local_y = ?);", button[0], button[1], button[2])
+    if request.method == "POST":
+        notes = request.form.get("notes")
+        notes_id = request.form.get("notes_id")
+        current_notes = db.execute("SELECT notes FROM history WHERE id = ?", notes_id)
+        print(current_notes)
+        current_notes = current_notes[0]['notes']
+        notes = f"{notes} \n{current_notes}"
+        db.execute("UPDATE history SET notes = ? WHERE id = ?;", notes, notes_id)
+        return redirect(url_for('plothistory', button=button, history=history))
+    return render_template("plothistory.html", button=button, history=history)
+
+@app.route("/notes", methods=["GET", "POST"])
+def notes():
+    if request.method == "POST":
+        notes = request.form.get("notes")
+        # db.execute("INSERT INTO history notes VALUES ? WHERE plot_id = ? AND user_id = ?;", notes, )
+        print(notes)
+        return redirect("/")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -162,3 +168,5 @@ def register():
     else:
         return render_template("register.html")
     
+if __name__ == "__main__":
+    app.run(debug=True)

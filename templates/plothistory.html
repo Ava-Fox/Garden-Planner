@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Plot history 
+{% endblock %}
+
+{% block main %}
+    <h2>
+        History for Bed: {{button[0]}} Plot: {{button[1]}}, {{button[2]}}
+    </h2>
+
+    {% if history %}
+    <table>
+        <th>
+            Plant
+        </th>
+        <th>
+            Seed Source
+        </th>
+        <th>
+            Date
+        </th>
+        <th>
+            Notes
+        </th>
+        {% for data in history %}
+            <tr>
+                <td>
+                    {{data['name']}}
+                </td>
+                <td>
+                    {{data['seed_source']}}
+                </td>
+                <td>
+                    {{data['date']}}
+                </td>
+                <td>
+                    {{data['notes']}}
+                    <form action="plothistory" method="post" style="width: 100%;">
+                        <input name="notes" type="text">
+                        <input type="hidden" name="notes_id" value="{{data['id']}}">
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <p id="test"> Looks like there's no history for this plot yet! </p>
+        <img src="static/images/plant.gif" alt="growing plant">
+    {% endif %}
+{% endblock %}
