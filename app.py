@@ -40,6 +40,9 @@ def add():
         if plant_id:
             plant_id = plant_id[0]['id']
             db.execute("INSERT INTO history (plot_id, plant_id, date, seed_source, notes) VALUES ((SELECT id FROM plot WHERE bed = ? AND local_x = ? AND local_y = ?), ?, ?, ?, ?);", bed, x, y, plant_id, date, seed_source, notes)
+        else:
+            db.execute("INSERT INTO plants (name) VALUES (?);", plant.lower())
+            db.execute("INSERT INTO history(plot_id, plant_id, date, seed_source, notes) VALUES ((SELECT id FROM plot WHERE bed = ? AND local_x = ? AND local_y = ?), (SELECT id FROM plants WHERE name = ?), ?, ?, ?);", bed, x, y, plant, date, seed_source, notes)
         
         # Check to see if user response matches with plants logged in database
         
@@ -76,11 +79,11 @@ def plothistory():
     history = db.execute("SELECT history.id, date, name, seed_source, notes FROM history JOIN plants ON history.plant_id = plants.id WHERE plot_id = (SELECT id FROM plot WHERE bed = ? AND local_x = ? AND local_y = ?);", button[0], button[1], button[2])
     if request.method == "POST":
         notes = request.form.get("notes")
-        current_notes = db.execute("SELECT notes FROM history WHERE id = ?", history[0]['id'])
+        notes_id = request.form.get("notes_id")
+        current_notes = db.execute("SELECT notes FROM history WHERE id = ?", notes_id)
         current_notes = current_notes[0]['notes']
         notes = f"{notes} \n{current_notes}"
-        print(notes)
-        db.execute("UPDATE history SET notes = ? WHERE id = ?;", notes, history[0]['id'])
+        db.execute("UPDATE history SET notes = ? WHERE id = ?;", notes, notes_id)
         return render_template("plothistory.html", button=button, history=history)
     return render_template("plothistory.html", button=button, history=history)
 

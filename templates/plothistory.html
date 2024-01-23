@@ -38,6 +38,7 @@
                     {{data['notes']}}
                     <form action="plothistory" method="post" style="width: 100%;">
                         <input name="notes" type="text">
+                        <input type="hidden" name="notes_id" value="{{data['id']}}">
                     </form>
                 </td>
             </tr>
