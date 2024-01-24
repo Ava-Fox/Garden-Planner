@@ -25,6 +25,13 @@ button:hover {
     color: rgb(195, 70, 70);
 }
 
+input {
+    line-height: 50px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    border: 2px solid gray;
+}
+
 nav .navbar-brand {
     font-size: x-large;
 }
@@ -35,6 +42,7 @@ main {
 
 table {
     border: 2px solid black;
+    margin: auto;
     text-align: center;
     width: 50%;
     margin-top: 50px;

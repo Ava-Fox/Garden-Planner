@@ -83,7 +83,7 @@ DONE: Click plot button and it redirects to its history page
 
 TODO: How make layout of plots more pleasant?
 
-TODO: Make able add notes
+GOODENOUGH: Make able add notes
     - FIGURED: wonder how to do without having to redirect to another page?
     - FIXED: WHEN ADDING ADDITIONAL NOTES TO OTHER COLUMNS,
     THE PAGE ONLY HAS THE FIRST COLUMN'S INFO SO IT WON'T UPDATE ACTUAL ONE WANT

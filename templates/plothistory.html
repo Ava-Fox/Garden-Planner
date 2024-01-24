@@ -12,13 +12,13 @@
     {% if history %}
     <table>
         <th>
+            Date
+        </th>
+        <th>
             Plant
         </th>
         <th>
             Seed Source
-        </th>
-        <th>
-            Date
         </th>
         <th>
             Notes
@@ -26,13 +26,17 @@
         {% for data in history %}
             <tr>
                 <td>
-                    {{data['name']}}
+                    {{data['date']}}
+                </td>
+                <td>
+                    {% if data['url'] %}
+                        <a href="{{data['url']}}"> {{data['name']}} </a>
+                    {% else %}
+                        {{data['name']}}
+                    {% endif %}
                 </td>
                 <td>
                     {{data['seed_source']}}
-                </td>
-                <td>
-                    {{data['date']}}
                 </td>
                 <td>
                     {{data['notes']}}
@@ -44,6 +48,7 @@
             </tr>
         {% endfor %}
     </table>
+    <p> *Only write one note at a time please  </p>
     {% else %}
         <p id="test"> Looks like there's no history for this plot yet! </p>
         <img src="static/images/plant.gif" alt="growing plant">

@@ -76,24 +76,17 @@ def index():
 @app.route("/plothistory", methods=["GET", "POST"])
 def plothistory():
     button = session.get('button')
-    history = db.execute("SELECT history.id, date, name, seed_source, notes FROM history JOIN plants ON history.plant_id = plants.id WHERE plot_id = (SELECT id FROM plot WHERE bed = ? AND local_x = ? AND local_y = ?);", button[0], button[1], button[2])
+    history = db.execute("SELECT history.id, date, name, url,  seed_source,  notes FROM history JOIN plants ON history.plant_id = plants.id WHERE plot_id = (SELECT id FROM plot WHERE bed = ? AND local_x = ? AND local_y = ?) ORDER BY DATE DESC;", button[0], button[1], button[2])
+    print(history)
     if request.method == "POST":
         notes = request.form.get("notes")
         notes_id = request.form.get("notes_id")
         current_notes = db.execute("SELECT notes FROM history WHERE id = ?", notes_id)
         current_notes = current_notes[0]['notes']
-        notes = f"{notes} \n{current_notes}"
+        notes = f"{notes} | {current_notes}"
         db.execute("UPDATE history SET notes = ? WHERE id = ?;", notes, notes_id)
         return redirect(url_for('plothistory', button=button, history=history))
     return render_template("plothistory.html", button=button, history=history)
-
-@app.route("/notes", methods=["GET", "POST"])
-def notes():
-    if request.method == "POST":
-        notes = request.form.get("notes")
-        # db.execute("INSERT INTO history notes VALUES ? WHERE plot_id = ? AND user_id = ?;", notes, )
-        print(notes)
-        return redirect("/")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
