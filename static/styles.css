@@ -18,9 +18,18 @@ button:hover {
     background-color: #DFC8AC;
 }
 
-.beds {
-    text-align: left;
+.bed {
+    margin-left: 20px;
+    width: 500px;
 }
+
+.beds {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    margin: auto;
+}
+
 .error {
     color: rgb(195, 70, 70);
 }
@@ -69,4 +78,8 @@ img {
     width: 500px;
     height: 20px;
     text-align: center;
+}
+
+ul {
+    list-style-type: none;
 }
