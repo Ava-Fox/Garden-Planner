@@ -74,14 +74,14 @@ REWORKED: How the heck do you plot each plot-id in a table?
 
 NEWPLAN: Focus on making a cute garden log of own garden
 
-TODO: Make able to add plants to garden history
+DONE: Make able to add plants to garden history
 
 TODO: Make able to delete plants from current garden 
 
 DONE: Click plot button and it redirects to its history page
       - functionality to add/delete right there too? 
 
-TODO: How make layout of plots more pleasant?
+DONE: How make layout of plots more pleasant?
 
 GOODENOUGH: Make able add notes
     - FIGURED: wonder how to do without having to redirect to another page?
