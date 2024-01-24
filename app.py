@@ -36,7 +36,11 @@ def add():
         notes = request.form.get("notes")
 
         plant_id = db.execute("SELECT id FROM plants WHERE name = ?;", plant)
-      
+        plot_id = db.execute("SELECT id FROM plot WHERE bed = ? AND local_x = ? AND local_y = ?", bed, x, y)
+        
+        if not plot_id:
+            return render_template("add.html", message="Invalid plot")
+
         if plant_id:
             plant_id = plant_id[0]['id']
             db.execute("INSERT INTO history (plot_id, plant_id, date, seed_source, notes) VALUES ((SELECT id FROM plot WHERE bed = ? AND local_x = ? AND local_y = ?), ?, ?, ?, ?);", bed, x, y, plant_id, date, seed_source, notes)
