@@ -58,12 +58,6 @@ def add():
         return render_template("add.html")
 
 
-@app.route("/history")
-@login_required
-def history():
-    return render_template("history.html")
-
-
 @app.route("/", methods=["GET", "POST"])
 @login_required
 def index():
