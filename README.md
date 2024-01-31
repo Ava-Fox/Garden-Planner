@@ -10,7 +10,15 @@ My project is a straightforward garden log that keeps track of which plant grew 
 
 While the log in and register pages are strictly speaking unnecessary, I still included them so I could take from previous homework and enjoy the feeling of logging in to my own webpage. 
 
-The main workhorses of this program are the SQL database, plothistory, and the add pages. 
+The main workhorses of this program are the SQL database, plothistory, and the add pages. I was able to create a separate program called sql.py that created and logged each plot of my garden into a SQL database. The main tables are the plants, history, and plot tables. Each logged plant may have a url associated with it that will be later accessed if the user wishes to read up more on it. The plot table logs every plot in my garden and assigns them an id. The history table is set up to coincide with both the plant and plot tables, and includes more information about each history instance such as date, seed source, and notes. 
+
+The index gives the user a list of options to click through, and saves which button value was clicked to the session - which is correlated to the plot data -  so that it can redirect them to a plothistory page. This is how the plot data is saved from one route to another. This can then give the illusion of a separate plot history page for each plot. 
+
+Every time a user is directed to the plothistory page, the history of the button clicked is looked up in the database given the button and plot's value. In this page, the user has the option to add notes about a specific plant, or learn more about a logged plant depending on whether a link is provided in the database or not. If so, the plant name is linked to an outside resource (most likely to growinginthegarden.com). 
+
+If a user wishes to add notes to a particular plant, they may do so by entering data into a textbox in the notes section. The html page has two inputs for each note, one being hidden whos value is the history id. This is so that data entered into one section won't get put into an unrelated one. The page is then redirected back to itself so the user does not need to manually refresh the page.
+
+In order to add a plant to a plot, a user must navigate to the dedicated page. Here they have the option to log in more information about the plant being entered. The plot coordinates are related to the bed number and its x and y values. The beds are numbered from top-down left to right, for example: the North West L - shaped bed is also known as bed number 1. It is then checked to see if the user enered in a valid plot number by checking to see if there is an id associated with a plot with the given values. Similarly, 
 
 A main focus I had during the development of this website was to solidify my git and github skills. As such, I was able to get comfortable creating and merging branches when working on different aspects of the code, as well as pushing and pulling to and from github.
 

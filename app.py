@@ -75,7 +75,6 @@ def index():
 def plothistory():
     button = session.get('button')
     history = db.execute("SELECT history.id, date, name, url,  seed_source,  notes FROM history JOIN plants ON history.plant_id = plants.id WHERE plot_id = (SELECT id FROM plot WHERE bed = ? AND local_x = ? AND local_y = ?) ORDER BY DATE DESC;", button[0], button[1], button[2])
-    print(history)
     if request.method == "POST":
         notes = request.form.get("notes")
         notes_id = request.form.get("notes_id")
